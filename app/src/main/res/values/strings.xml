@@ -3,4 +3,7 @@
     <string name="counter">Counter</string>
     <string name="increment">Increment</string>
     <string name="numDisplay">0</string>
+    <string name="decimal">Decimal</string>
+    <string name="binary">Binary</string>
+    <string name="hexadecimal">Hexadecimal</string>
 </resources>
