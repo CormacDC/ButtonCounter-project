@@ -13,8 +13,17 @@ public class MainActivity extends AppCompatActivity {
     private String TAG = "MainActivity";
 
     private Button button1;
+    private Button decimal;
+    private Button binary;
+    private Button hexadecimal;
 
     private TextView numDisplay;
+
+    private boolean decBool = true;
+    private boolean binBool = false;
+    private boolean hexBool = false;
+
+    private int val = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,18 +37,86 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
 
-                increment();
+                if(decBool)
+                    incrementDecimal();
+                if(binBool)
+                    incrementBinary();
+                if(hexBool)
+                    incrementHexadecimal();
+
+            }
+        });
+
+        decimal = findViewById(R.id.decimal);
+        decimal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+
+                val = 0;
+
+                numDisplay.setText("0");
+
+                decBool = true;
+                hexBool = false;
+                binBool = false;
+
+            }
+        });
+
+        binary = findViewById(R.id.binary);
+        binary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+
+                val = 0;
+
+                numDisplay.setText("0");
+
+                decBool = false;
+                hexBool = false;
+                binBool = true;
+
+            }
+        });
+
+        hexadecimal = findViewById(R.id.hexadecimal);
+        hexadecimal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+
+                val = 0;
+
+                numDisplay.setText("0");
+
+                decBool = false;
+                hexBool = true;
+                binBool = false;
 
             }
         });
     }
 
-    private void increment(){
+    private void incrementDecimal(){
 
-        int val = Integer.valueOf(numDisplay.getText().toString());
         val++;
 
         numDisplay.setText(String.valueOf(val));
+
+    }
+
+    private void incrementBinary(){
+
+        val++;
+
+        numDisplay.setText(Integer.toString(val,2));
+
+    }
+
+    private void incrementHexadecimal(){
+
+        val++;
+
+        numDisplay.setText(Integer.toString(val,16));
 
     }
 
