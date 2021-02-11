@@ -1,5 +1,6 @@
 package com.example.button_counter_conahan;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -117,6 +118,34 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState){
+
+        super.onSaveInstanceState(outState);
+
+        String counterValue = numDisplay.getText().toString();
+        outState.putString("numDisplay",counterValue);
+        outState.putBoolean("decBool",decBool);
+        outState.putBoolean("binBool",binBool);
+        outState.putBoolean("hexBool",hexBool);
+        outState.putInt("val",val);
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState){
+
+        super.onRestoreInstanceState(savedInstanceState);
+
+        String counterValue = savedInstanceState.getString("numDisplay");
+        numDisplay.setText(counterValue);
+        decBool = savedInstanceState.getBoolean("decBool");
+        binBool = savedInstanceState.getBoolean("binBool");
+        hexBool = savedInstanceState.getBoolean("hexBool");
+        val = savedInstanceState.getInt("val");
+
     }
 
     private void incrementDecimal(){
