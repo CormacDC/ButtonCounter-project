@@ -6,4 +6,6 @@
     <string name="decimal">Decimal</string>
     <string name="binary">Binary</string>
     <string name="hexadecimal">Hexadecimal</string>
+    <string name="decrement">Decrement</string>
+    <string name="reset">Reset</string>
 </resources>

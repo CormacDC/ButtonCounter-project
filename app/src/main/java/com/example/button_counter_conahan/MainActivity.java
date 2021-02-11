@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
     private String TAG = "MainActivity";
 
     private Button button1;
+    private Button decrement;
+    private Button reset;
     private Button decimal;
     private Button binary;
     private Button hexadecimal;
@@ -47,14 +49,39 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        decimal = findViewById(R.id.decimal);
-        decimal.setOnClickListener(new View.OnClickListener() {
+        decrement = findViewById(R.id.decrement);
+        decrement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+
+                if(decBool)
+                    decrementDecimal();
+                if(binBool)
+                    decrementBinary();
+                if(hexBool)
+                    decrementHexadecimal();
+
+            }
+        });
+
+        reset = findViewById(R.id.reset);
+        reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
 
                 val = 0;
 
                 numDisplay.setText("0");
+
+            }
+        });
+
+        decimal = findViewById(R.id.decimal);
+        decimal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+
+                numDisplay.setText(String.valueOf(val));
 
                 decBool = true;
                 hexBool = false;
@@ -68,9 +95,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
 
-                val = 0;
-
-                numDisplay.setText("0");
+                numDisplay.setText(Integer.toString(val,2));
 
                 decBool = false;
                 hexBool = false;
@@ -84,9 +109,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
 
-                val = 0;
-
-                numDisplay.setText("0");
+                numDisplay.setText(Integer.toString(val,16));
 
                 decBool = false;
                 hexBool = true;
@@ -115,6 +138,30 @@ public class MainActivity extends AppCompatActivity {
     private void incrementHexadecimal(){
 
         val++;
+
+        numDisplay.setText(Integer.toString(val,16));
+
+    }
+
+    private void decrementDecimal(){
+
+        val--;
+
+        numDisplay.setText(String.valueOf(val));
+
+    }
+
+    private void decrementBinary(){
+
+        val--;
+
+        numDisplay.setText(Integer.toString(val,2));
+
+    }
+
+    private void decrementHexadecimal(){
+
+        val--;
 
         numDisplay.setText(Integer.toString(val,16));
 
